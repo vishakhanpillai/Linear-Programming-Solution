@@ -50,14 +50,19 @@ for i in range(0,cNo):
 
 status = prob.solve()
 
-print("The Solution is ", LpStatus[status])
+print("The Objective Function Is:", prob.objective)
+print("\nConstraints:")
+for constraint in prob.constraints.values():
+    print(constraint)
+
+print("\nThe Solution is", LpStatus[status], "\n")
 
 if status == 1:
     for i in prob.variables():
         print(i.name, "=", i.varValue)
-    print("Optimal Value for the objective function is =", value(prob.objective))
+    print("\nOptimal Value for the objective function is =", value(prob.objective))
 else:
-    print("No Optimal Solution Found")
+    print("\nNo Optimal Solution Found")
         
 
 
